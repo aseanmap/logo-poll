@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASEAN MAP — Logo Poll</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1f45a3;
+    --red:#e2231a;
+    --yellow:#f5b400;
+    --ink:#141414;
+    --muted:#6b7280;
+    --line:#e6e8ec;
+    --bg:#f6f7f9;
+    --card:#ffffff;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:40px 20px 64px}
+
+  /* Header */
+  header{text-align:center;margin-bottom:34px}
+  .kicker{
+    font-size:13px;font-weight:600;letter-spacing:.14em;
+    color:var(--muted);margin:0 0 10px
+  }
+  h1{
+    font-size:clamp(26px,5vw,38px);font-weight:800;
+    letter-spacing:-.02em;margin:0 0 8px
+  }
+  .lede{font-size:16px;color:var(--muted);margin:0 auto;max-width:52ch}
+
+  /* Options */
+  .options{
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px
+  }
+  @media (max-width:640px){.options{grid-template-columns:1fr}}
+
+  .option{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .option .bar{height:6px;width:100%}
+  .option.a .bar{background:var(--blue)}
+  .option.b .bar{background:var(--red)}
+
+  .stage{
+    padding:26px;display:flex;align-items:center;justify-content:center;
+    min-height:190px;background:#fff
+  }
+  .stage img{max-width:100%;max-height:150px;height:auto;display:block}
+
+  .foot{
+    padding:18px 20px 22px;border-top:1px solid var(--line);
+    display:flex;flex-direction:column;gap:14px
+  }
+  .name{font-size:15px;font-weight:600;margin:0}
+  .name span{color:var(--muted);font-weight:500}
+
+  button.vote{
+    appearance:none;border:0;cursor:pointer;
+    font-family:inherit;font-size:15px;font-weight:600;color:#fff;
+    padding:13px 16px;border-radius:10px;width:100%;
+    transition:transform .08s ease,opacity .15s ease,background .15s ease
+  }
+  .option.a button.vote{background:var(--blue)}
+  .option.b button.vote{background:var(--red)}
+  button.vote:hover{opacity:.92}
+  button.vote:active{transform:translateY(1px)}
+  button.vote:focus-visible{outline:3px solid #99b3ff;outline-offset:2px}
+  button.vote:disabled{cursor:default;opacity:1;background:#eceef2;color:var(--muted)}
+
+  /* Results */
+  .result{margin-top:14px}
+  .result .track{
+    height:10px;border-radius:6px;background:#eceef2;overflow:hidden
+  }
+  .result .fill{
+    height:100%;width:0;border-radius:6px;
+    transition:width .7s cubic-bezier(.22,.61,.36,1)
+  }
+  .option.a .fill{background:var(--blue)}
+  .option.b .fill{background:var(--yellow)}
+  .result .meta{
+    display:flex;justify-content:space-between;
+    font-size:13px;color:var(--muted);margin-top:8px
+  }
+  .result .meta b{color:var(--ink);font-weight:700}
+
+  /* Status line */
+  .status{
+    text-align:center;margin-top:30px;min-height:22px;
+    font-size:14px;color:var(--muted)
+  }
+  .status.ok{color:#15803d;font-weight:600}
+  .status.err{color:var(--red);font-weight:600}
+
+  .total{text-align:center;margin-top:8px;font-size:13px;color:var(--muted)}
+
+  footer{
+    text-align:center;margin-top:42px;font-size:12px;color:#9aa1ac
+  }
+  .hidden{display:none !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">ASEAN Motorcycle Assessment Programme</p>
+    <h1>Help us choose the logo</h1>
+    <p class="lede">Two designs are on the table. Pick the one you think best represents ASEAN MAP, then cast your vote. One vote per person.</p>
+  </header>
+
+  <div class="options">
+    <!-- Option A -->
+    <div class="option a">
+      <div class="bar"></div>
+      <div class="stage"><img src="revise_logo-01.png" alt="Logo design 1 — motorcycle silhouette above the ASEAN MAP wordmark"></div>
+      <div class="foot">
+        <p class="name">Design 1 <span>— motorcycle silhouette</span></p>
+        <button class="vote" data-option="logo1">Vote for Design 1</button>
+        <div class="result hidden" data-for="logo1">
+          <div class="track"><div class="fill"></div></div>
+          <div class="meta"><span>Design 1</span><span><b class="pct">0%</b> · <span class="cnt">0</span> votes</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="option b">
+      <div class="bar"></div>
+      <div class="stage"><img src="revise_logo-02.png" alt="Logo design 2 — emblem beside the ASEAN MAP wordmark"></div>
+      <div class="foot">
+        <p class="name">Design 2 <span>— emblem &amp; wordmark</span></p>
+        <button class="vote" data-option="logo2">Vote for Design 2</button>
+        <div class="result hidden" data-for="logo2">
+          <div class="track"><div class="fill"></div></div>
+          <div class="meta"><span>Design 2</span><span><b class="pct">0%</b> · <span class="cnt">0</span> votes</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="status" id="status"></p>
+  <p class="total hidden" id="total"></p>
+
+  <footer>ASEAN MAP · Motorcycle Assessment Programme</footer>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — paste your Google Apps Script Web App URL here.
+   It looks like: https://script.google.com/macros/s/AKfyc.../exec
+   ============================================================ */
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzsHgExTUoBNcm10sjaYZXFMgRV1LHlxKIuOLZVGd7joGxGm01gzE-s4hEEbi25YWV7/exec";
+
+const STORAGE_KEY = "aseanmap_logo_vote";
+const statusEl = document.getElementById("status");
+const totalEl  = document.getElementById("total");
+
+function hasVoted(){
+  try { return !!localStorage.getItem(STORAGE_KEY); } catch(e){ return false; }
+}
+function markVoted(opt){
+  try { localStorage.setItem(STORAGE_KEY, opt); } catch(e){}
+}
+
+function setStatus(msg, kind){
+  statusEl.textContent = msg;
+  statusEl.className = "status" + (kind ? " " + kind : "");
+}
+
+function lockButtons(){
+  document.querySelectorAll("button.vote").forEach(b=>{
+    b.disabled = true;
+    b.textContent = "Voting closed for you";
+  });
+}
+function revealResults(){
+  document.querySelectorAll(".result").forEach(r=>r.classList.remove("hidden"));
+  totalEl.classList.remove("hidden");
+}
+
+function sendVote(option){
+  // no-cors: the row is written to the sheet; we just can't read the reply,
+  // so we confirm optimistically.
+  return fetch(WEB_APP_URL, {
+    method:"POST",
+    mode:"no-cors",
+    headers:{ "Content-Type":"text/plain;charset=utf-8" },
+    body: JSON.stringify({ option: option })
+  });
+}
+
+/* JSONP read of the live tallies */
+function loadResults(){
+  if(!urlReady()) return;
+  const cb = "onResults_" + Date.now();
+  window[cb] = function(data){
+    const c1 = (data && data.logo1) || 0;
+    const c2 = (data && data.logo2) || 0;
+    const total = c1 + c2;
+    paint("logo1", c1, total);
+    paint("logo2", c2, total);
+    totalEl.textContent = total + (total === 1 ? " vote counted" : " votes counted");
+    delete window[cb];
+    document.body.removeChild(s);
+  };
+  const s = document.createElement("script");
+  s.src = WEB_APP_URL + "?callback=" + cb + "&t=" + Date.now();
+  s.onerror = function(){ delete window[cb]; };
+  document.body.appendChild(s);
+}
+
+function paint(opt, count, total){
+  const box = document.querySelector('.result[data-for="'+opt+'"]');
+  if(!box) return;
+  const pct = total ? Math.round((count/total)*100) : 0;
+  box.querySelector(".fill").style.width = pct + "%";
+  box.querySelector(".pct").textContent = pct + "%";
+  box.querySelector(".cnt").textContent = count;
+}
+
+function urlReady(){
+  return WEB_APP_URL && WEB_APP_URL.indexOf("PASTE_") === -1;
+}
+
+document.querySelectorAll("button.vote").forEach(btn=>{
+  btn.addEventListener("click", async ()=>{
+    if(hasVoted()){ return; }
+    const option = btn.dataset.option;
+
+    if(!urlReady()){
+      setStatus("Setup needed: add your Google Apps Script URL to the page.", "err");
+      return;
+    }
+
+    lockButtons();
+    setStatus("Recording your vote…");
+    try{
+      await sendVote(option);
+      markVoted(option);
+      setStatus("Thanks — your vote has been counted.", "ok");
+      revealResults();
+      setTimeout(loadResults, 900); // give the sheet a moment to write
+    }catch(err){
+      setStatus("Something went wrong. Please try again.", "err");
+      document.querySelectorAll("button.vote").forEach((b,i)=>{
+        b.disabled = false;
+        b.textContent = i === 0 ? "Vote for Design 1" : "Vote for Design 2";
+      });
+    }
+  });
+});
+
+/* If the person already voted on this device, show results straight away */
+if(hasVoted()){
+  lockButtons();
+  setStatus("You've already voted. Here are the current results.", "ok");
+  revealResults();
+  loadResults();
+}
+</script>
+</body>
+</html>
